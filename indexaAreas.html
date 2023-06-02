@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* RESETEA VALORES POR DEFECTO EN LOS NAVEGADORES */
+        html {
+            box-sizing: border-box;
+            font-size: 16px;
+            font-family: sans-serif;
+            font-weight: 600;
+        }
+
+        *,
+        *::after,
+        *::before {
+            box-sizing: inherit;
+        }
+
+        body {
+            display: grid;
+            /* empezamos a estructurar el template aplicando la filosofía de "mobil-first" una columna y 7 filas (opcional ya que se definen mediante la propiedad grid-template-areas ) */
+            /* grid-template-columns: repeat(1, 1fr);
+            grid-template-rows: repeat(7, auto); */
+
+            /* literalmente establecemos las areas de las columnas y filas asignandoles un nombre que apunta ala clase del elemento */
+            grid-template-areas:
+                "header"
+                "aside"
+                "titulo"
+                "seccion-1"
+                "seccion-2"
+                "articulos"
+                "footer";
+
+            min-height: 100vh;
+            gap: 4px;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: green;
+            /* nombre que se se le asigna en la propiedad grid-template-areas del contenedor padre*/
+            grid-area: header;
+
+        }
+
+        aside {
+            background-color: red;
+            grid-area: aside;
+        }
+
+        #titulo {
+            background-color: purple;
+            grid-area: titulo;
+        }
+
+        article {
+            background-color: blue;
+            /* el ancho en mobiles se dividen en 2 columnas */
+            flex-basis: 50%;
+            border: 4px solid white;
+        }
+
+        footer {
+            background-color: green;
+            grid-area: footer;
+        }
+
+        .secciones {
+            background-color: coral;
+        }
+
+        .sec-1 {
+            grid-area: seccion-1;
+
+        }
+
+        .sec-2 {
+            grid-area: seccion-2;
+
+        }
+
+        div#articulos {
+            grid-area: articulos;
+            /* establece en fila los elementos hijos */
+            display: flex;
+            flex-wrap: wrap;
+            min-height: 200px;
+        }
+
+        header,
+        aside,
+        #titulo,
+        footer,
+        article,
+        .sec-1,
+        .sec-2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        header,
+        aside,
+        section#titulo,
+        footer {
+            min-height: 85px;
+        }
+
+        section.secciones.sec-1,
+        section.secciones.sec-2 {
+            height: 200px;
+        }
+
+        div#articulos article {
+            height: 160px;
+        }
+
+
+        /* dispositivos grandes a partir de 1024px */
+        @media screen and (min-width: 1024px) {
+
+            body {
+                display: grid;
+                /* en este caso si es necesario establecer el ancho para que sea equitativo fraciones 1fr o puedes manejarle porcentajes   */
+                grid-template-columns: 20% 40% auto ;
+                /* otra manera de establecerlo */
+                grid-template-columns: repeat(3,1fr);
+                /* grid-template-rows: repeat(5, auto); */
+
+                /* literalmente establecemos las areas de las columnas y filas asignandoles un nombre que apunta ala clase del elemento */
+                grid-template-areas:
+                    "header   header      header     "
+                    "aside    titulo      titulo     "
+                    "aside    seccion-1   seccion-2  "
+                    "aside    articulos   articulos  "
+                    "footer   footer      footer     ";
+                /* mínimo alto del padre en este caso el body */
+                min-height: 100vh;
+                /* espacio entre celdas */
+                gap: 4px;
+                margin: 0;
+                padding: 0;
+            }
+
+            header {
+                background-color: green;
+                grid-area: header;
+
+            }
+
+            aside {
+                background-color: red;
+
+                grid-area: aside;
+
+
+            }
+
+            #titulo {
+                background-color: purple;
+
+                grid-area: titulo;
+
+            }
+
+            .secciones {
+                background-color: coral;
+            }
+
+            article {
+                background-color: blue;
+                /* divide en 5 columnas las filas de los artículos */
+                flex-basis: 20%;
+                border: 4px solid white;
+            }
+
+            footer {
+                background-color: green;
+                grid-area: footer;
+            }
+
+            .sec-1 {
+                grid-area: seccion-1;
+
+            }
+
+            .sec-2 {
+                grid-area: seccion-2;
+
+            }
+
+            div#articulos {
+                grid-area: articulos;
+                /* altura mínima de el contenedor de los artículos */
+                min-height: 200px;
+            }
+
+            header,
+            aside,
+            #titulo,
+            footer,
+            article,
+            .sec-1,
+            .sec-2 {
+                /* centra el contenido las plabras en horizontal y vertical */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            /* alturas mínimas en los elmentos */
+            header,
+            aside,
+            section#titulo,
+            footer {
+                min-height: 85px;
+            }
+
+            section.secciones.sec-1,
+            section.secciones.sec-2 {
+                height: 200px;
+            }
+
+            div#articulos article {
+                height: 160px;
+            }
+
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+        HEADER
+    </header>
+
+    <aside>
+        ASIDE
+    </aside>
+
+    <section id="titulo"> TÍTULO</section>
+
+    <section class="secciones sec-1">SECCIÓN 1</section>
+
+    <section class="secciones sec-2"> SECCIÓN 2</section>
+
+    <div id="articulos">
+        <article>ARTÍCULO 1</article>
+        <article>ARTÍCULO 2</article>
+        <article>ARTÍCULO 3</article>
+        <article>ARTÍCULO 4</article>
+        <article>ARTÍCULO 5</article>
+        <article>ARTÍCULO 6</article>
+        <article>ARTÍCULO 7</article>
+        <article>ARTÍCULO 8</article>
+        <article>ARTÍCULO 9</article>
+        <article>ARTÍCULO 10</article>
+    </div>
+
+    <footer>
+        FOOTER
+    </footer>
+
+</body>
+
+</html>

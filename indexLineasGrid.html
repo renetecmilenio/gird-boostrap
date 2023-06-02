@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        /* en este documento existe una media query que afecta a los dispositivos grandes entonces todo lo que se ponga afuera solo le afectara a los dispositivos pequeños, de esta es una manera estamos utilizando el método de "MOBIL-FIRST" le das prioridad a los dispositivos mobiles y vas creando media queries para los dispositivos más grandes */
+
+        /* RESETEO DE VALORES POR DEFAULT EN NAVEGADORES */
+        html {
+            box-sizing: border-box;
+            font-size: 16px;
+            font-family: sans-serif;
+            font-weight: 600;
+        }
+
+        *,
+        *::after,
+        *::before {
+            box-sizing: inherit;
+        }
+/* Estableces el contenedor padre con GRID */
+        body {
+            display: grid;
+            /* existen diferentes maneras de establecer esta propiedad ya sea row o column */
+            /* de esta manera se establace en el primer valor el numero ya sea de columans o filas y en el segundo valor es el ancho de la columna */
+            grid-template-columns: repeat(1, auto);
+            grid-template-rows: 1fr;
+
+            /* alto minimo tomado del view port la parte visibloe del navegador */
+            min-height: 100vh;
+            /* espacio entre los elementos del grid */
+            gap: 4px;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: green;
+
+            /* empezar el elemento desde la linea en columna 1 */
+            grid-column-start: 1;
+            /* terminar el elemento en columna en la línea 4  */
+            grid-column-end: 4;
+            /* short hand de las 2 propiedades anteriores */
+            grid-column: 1/4;
+            /* diferente manera de establecer la propiedad con la palabra span indica que desde donde estas muevete N cantidad de celdas */
+            /* como este es el último valor que maneja la posicion en columna es el que va a frespetar auqnue no se comenten las propiedades anteriores */
+            grid-column: span 1;
+
+            grid-row-start: 1;
+            grid-row-end: 2;
+            grid-row: 1/2;
+            grid-row: span 1;
+
+            /* centras el contenido del elemento en horizontal y vertical donde justify-content toma el eje principal y align items el eje transversal ya que por default es flex se comporta en filas si se establece en columnas se invierten estas propiedades  */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        aside {
+            background-color: red;
+
+            /* grid-column-start: 1;
+            grid-column-end: 2;
+            grid-column: 1/2; */
+            grid-column: span 1;
+
+            /* grid-row-start: 2;
+            grid-row-end: 5;
+            grid-row: 2/5; */
+            grid-row: span 1;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        #titulo {
+            background-color: purple;
+
+            /* grid-column-start: 2;
+            grid-column-end: 4;
+            grid-column: 2/4; */
+            grid-column: span 1;
+
+            /* grid-row-start: 2;
+            grid-row-end: 3;
+            grid-row: 2/3; */
+            grid-row: span 1;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .secciones {
+            background-color: coral;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        article {
+            background-color: blue;
+            flex-basis: 50%;
+            border: 4px solid white;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        footer {
+            background-color: green;
+
+            /* grid-column-start: 1;
+            grid-column-end: 4;
+            grid-column: 1/4; */
+            grid-column: span 1;
+
+            /* grid-row-start: 5;
+            grid-row-end: 6;
+            grid-row: 5/6; */
+            grid-row: span 1;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sec-1 {
+            /* grid-column-start: 2;
+            grid-column-end: 3;
+            grid-column: 2/3; */
+            grid-column: span 1;
+
+            /* grid-row-start: 3;
+            grid-row-end: 4;
+            grid-row: 3/4; */
+            grid-row: span 1;
+
+        }
+
+        .sec-2 {
+            /* grid-column-start: 3;
+            grid-column-end: 4;
+            grid-column: 3/4; */
+            grid-column: span 1;
+
+        }
+
+        div#articulos {
+            /* grid-column-start: 3;
+            grid-column-end: 5;
+            grid-column: 3/5; */
+            grid-column: span 1;
+
+            display: flex;
+            flex-wrap: wrap;
+            min-height: 200px;
+        }
+
+        header,
+        aside,
+        section#titulo,
+        footer {
+            /* establece un alto mínimo a estos elementos */
+            min-height: 85px;
+        }
+
+        section.secciones.sec-1,
+        section.secciones.sec-2 {
+            /* establece un alto mínimo a estos 2 elementos */
+            height: 200px;
+        }
+
+        div#articulos article {
+            /* establece un alto fijo a todos los articulos */
+            height: 160px;
+        }
+
+        /* media query que se utiliza para dispositivos más grandes en esta ocación solo se establecieron 2 medidas una con un mínimo de 1024 hacia arriba y lo que esta afuera de la media query que es de 1023px hacia abajo */
+
+        /* **************NOTA:******* no tienes que copiar todos las reglas css con todos sus propiedades lo mejor sería solo pasar las propiedades y valores que se tienen que modificar para cada dispositivo  */
+        @media screen and (min-width: 1024px) {
+
+            body {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(5, auto);
+                min-height: 100vh;
+                gap: 4px;
+                margin: 0;
+                padding: 0;
+            }
+
+            header {
+                background-color: green;
+/* 
+                grid-column-start: 1;
+                grid-column-end: 4;
+                grid-column: 1/4; */
+                grid-column: span 3;
+
+                /* grid-row-start: 1;
+                grid-row-end: 2;
+                grid-row: 1/2; */
+                grid-row: span 1;
+
+            }
+
+            aside {
+                background-color: red;
+
+                /* grid-column-start: 1;
+                grid-column-end: 2;
+                grid-column: 1/2; */
+                grid-column: span 1;
+
+                /* grid-row-start: 2;
+                grid-row-end: 5;
+                grid-row: 2/5; */
+                grid-row: span 3;
+
+
+            }
+
+            #titulo {
+                background-color: purple;
+
+                /* grid-column-start: 2;
+                grid-column-end: 4;
+                grid-column: 2/4; */
+                grid-column: span 2;
+
+                /* grid-row-start: 2;
+                grid-row-end: 3;
+                grid-row: 2/3; */
+                grid-row: span 1;
+
+            }
+
+            .secciones {
+                background-color: coral;
+            }
+
+            article {
+                background-color: blue;
+                flex-basis: 20%;
+                border: 4px solid white;
+            }
+
+            footer {
+                background-color: green;
+                /* grid-column-start: 1;
+                grid-column-end: 4;
+                grid-column: 1/4; */
+                grid-column: span 3;
+
+                /* grid-row-start: 5;
+                grid-row-end: 6;
+                grid-row: 5/6; */
+                grid-row: span 1;
+            }
+
+            .sec-1 {
+                /* grid-column-start: 2;
+                grid-column-end: 3;
+                grid-column: 2/3; */
+                grid-column: span 1;
+                
+                /* grid-row-start: 3;
+                grid-row-end: 4;
+                grid-row: 3/4; */
+                grid-row: span 1;
+
+            }
+
+            .sec-2 {
+                /* grid-column-start: 3;
+                grid-column-end: 4;
+                grid-column: 3/4; */
+                grid-column: span 1;
+
+            }
+
+            div#articulos {
+                /* grid-column-start: 3;
+                grid-column-end: 5;
+                grid-column: 3/5; */
+                grid-column: span 2;
+
+                display: flex;
+                flex-wrap: wrap;
+                min-height: 200px;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+        HEADER
+    </header>
+
+    <aside>
+        ASIDE
+    </aside>
+
+    <section id="titulo"> TÍTULO</section>
+
+    <section class="secciones sec-1">SECCIÓN 1</section>
+
+    <section class="secciones sec-2"> SECCIÓN 2</section>
+
+    <div id="articulos">
+        <article>ARTÍCULO 1</article>
+        <article>ARTÍCULO 2</article>
+        <article>ARTÍCULO 3</article>
+        <article>ARTÍCULO 4</article>
+        <article>ARTÍCULO 5</article>
+        <article>ARTÍCULO 6</article>
+        <article>ARTÍCULO 7</article>
+        <article>ARTÍCULO 8</article>
+        <article>ARTÍCULO 9</article>
+        <article>ARTÍCULO 10</article>
+    </div>
+
+    <footer>
+        FOOTER
+    </footer>
+
+</body>
+
+</html>

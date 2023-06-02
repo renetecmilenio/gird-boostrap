@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+
+    <!-- se manda llamar los estilos css del framewor de boostrap mediante CDN, las propiedades integrity y crossorigin no son necesarias pero son utiles para la seguridad de la página y para el usuario -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+
+    <!-- estilos personalizados sobreescribiendo los que tiene bootstrap por default -->
+    <style>
+        /* mandas llamar una clase utilitaria (ejemplo: .bg-success que tiene color verde por default) de bootstrap y al establecerla abajo de CDN de boostrap como es estilo en cascada va a tomar en cuenta el último que lea el navegador va leyemndo de arriba hacia abajo */
+        .bg-success {
+            background-color: blueviolet !important;
+        }
+    </style>
+</head>
+
+<!-- 
+    CLASE BOOTSTRAP      PROPIEDADES CSS        
+    d-flex          =    diplay: flex !important;
+    flex-column     =    flex-direction: column!important;
+    fw-bold         =    font-weight: 700!important;  
+-->
+
+<body class="d-flex flex-column  fw-bold">
+
+    <!-- 
+    CLASE BOOTSTRAP          PROPIEDADES CSS        
+    row (FILA)        =       Establece al div como fila con la prpiedad flex horizontal
+    gx-0           =          Espacio entre columnas parecido a gap (valores del 1-5)
+    fw-bold         =         font-weight: 700!important;  
+    align-items-center =      align-items: center!important;
+    justify-content-center =  justify-content: center!important;
+    p-3                    =  padding: 1rem!important;
+    border                 =  Establece un borde
+    border-3               =  establece el grosor del borde del elemento (valores del 1-5)
+    border-white           =  color del borde blanco;
+     -->
+    <header
+        class="row gx-0 bg-success d-flex align-items-center justify-content-center p-3 border border-3 border-white ">
+        HEADER
+    </header>
+
+
+    <div class="row gx-0 ">
+        <!-- 
+    CLASE BOOTSTRAP          PROPIEDADES CSS        
+    col-md-3           =    Tamaño del ancho de la columna  en dispositivos medianos 
+                            @media (min-width: 768px) (valores del 1-12 significa que el 3 es 25%) se envuelven en un contenedor con clase row para que tenga efecto
+    vh-100             =    toma el alto al 100% del view port (parte visible de la      
+                            ventana)   
+     -->
+        <div
+            class="col-md-3 bg-danger d-flex align-items-center justify-content-center p-3 border border-3 border-white">
+            ASIDE
+        </div>
+
+        <!-- 
+    CLASE BOOTSTRAP          PROPIEDADES CSS        
+    col-md-9           =    Tamaño del ancho de la columna  en dispositivos medianos 
+                            @media (min-width: 768px) (valores del 1-12 significa que el 9 es 75%) se envuelven en un contenedor con clase row para que tenga efecto
+         
+     -->
+        <main class="col-md-9 d-flex flex-column vh-100 border border-3 border-white">
+
+            <div class="row gx-0 bg-info d-flex align-items-center justify-content-center p-3 border border-3 border-white"
+                id="titulo"> TÍTULO
+            </div>
+
+            <!-- 
+    CLASE BOOTSTRAP          PROPIEDADES CSS        
+    flex-grow-1           =    rellena el espacio sobrante (en 1) divido entre los elementos
+                               que comparten el contenedor, ya sea en toda la fila o columna
+         -->
+            <div class="row gx-0 flex-grow-1">
+                <!-- 
+    CLASE BOOTSTRAP          PROPIEDADES CSS        
+    col-md-6           =    Tamaño del ancho de la columna  en dispositivos medianos 
+                            @media (min-width: 768px) (valores del 1-12 significa que el 6 es 50%) se envuelven en un contenedor con clase row para que tenga efecto
+    col-sm-12          =    Tamaño del ancho de la columna  en dispositivos pequeños (sm) 
+                            @media (min-width: 576px) (valores del 1-12 significa que el 12 es 100%) se envuelven en un contenedor con clase row para que tenga efecto
+        -->
+                <section
+                    class="col-md-6 col-sm-12 bg-warning d-flex align-items-center justify-content-center  border border-3 border-white">
+                    SECCIÓN 1
+                </section>
+                <!-- 
+    CLASE BOOTSTRAP          PROPIEDADES CSS        
+    col-md-6           =    Tamaño del ancho de la columna  en dispositivos medianos (md)
+                            @media (min-width: 768px) (valores del 1-12 significa que el 6 es 50%) se envuelven en un contenedor con clase row para que tenga efecto
+    col-sm-12          =    Tamaño del ancho de la columna  en dispositivos pequeños (sm) 
+                            @media (min-width: 576px) (valores del 1-12 significa que el 12 es 100%) se envuelven en un contenedor con clase row para que tenga efecto
+        -->
+                <section
+                    class="col-md-6 col-sm-12 bg-warning d-flex align-items-center justify-content-center border border-3 border-white">
+                    SECCIÓN 2
+                </section>
+            </div>
+
+            <!-- el felx-grow-1 rellena "el espacio sobrante" que dejan los hijos del contenedor "se divide" entre cada elemento hijo, imagínense como dividir un pastel y entre más grande sea el valor son las rebanadas que recibe en tamaño -->
+            
+            <div id="articulos" class="row  gx-0 flex-grow-1 ">
+                <!-- Cada caja de article tiene valores para diferentes dispositivos "extra chicos" a dispositovs "medianos" (col-6 col-xs-6 col-md-6 = 50%) divididos en 2 cajas por fila con el valor de 6 (50%) y en dispositivos grandes (lg) estan divididos en 5 cajas por fila con el valor de 2 (16.66666667%) excepto por la caja del article 3 y 8 que tiene el valor de 4 ( col-lg-4  = 33.33333333%) abarcando 2 cajas esto debido a que no hay manera de dividir con clases nativas de bootstrap una fila entre 5 con proporciones iguales, lo que se tendría que hacer es sobreescribir las clases como se hizo en el ejemplo de arriba (.bg-success) en el head pero con clases personalizadas. 
+    
+    -->
+                <article
+                    class="col-6 col-xs-6 col-md-6 col-lg-2 bg-primary d-flex align-items-center justify-content-center p-3 border border-3 border-white">
+                    ARTÍCULO 1
+                </article>
+                <article
+                    class="col-6 col-xs-6 col-md-6 col-lg-2 bg-primary d-flex align-items-center justify-content-center p-3 border border-3 border-white">
+                    ARTÍCULO 2
+                </article>
+                <article
+                    class="col-6 col-xs-6 col-md-6 col-lg-4 bg-primary d-flex align-items-center justify-content-center p-3 border border-3 border-white">
+                    ARTÍCULO 3
+                </article>
+                <article
+                    class="col-6 col-xs-6 col-md-6 col-lg-2 bg-primary d-flex align-items-center justify-content-center p-3 border border-3 border-white">
+                    ARTÍCULO 4
+                </article>
+                <article
+                    class="col-6 col-xs-6 col-md-6 col-lg-2 bg-primary d-flex align-items-center justify-content-center p-3 border border-3 border-white">
+                    ARTÍCULO 5
+                </article>
+                <article
+                    class="col-6 col-xs-6 col-md-6 col-lg-2 bg-primary d-flex align-items-center justify-content-center p-3 border border-3 border-white">
+                    ARTÍCULO 6
+                </article>
+                <article
+                    class="col-6 col-xs-6 col-md-6 col-lg-2 bg-primary d-flex align-items-center justify-content-center p-3 border border-3 border-white">
+                    ARTÍCULO 7
+                </article>
+                <article
+                    class="col-6 col-xs-6 col-md-6 col-lg-4 bg-primary d-flex align-items-center justify-content-center p-3 border border-3 border-white">
+                    ARTÍCULO 8
+                </article>
+                <article
+                    class="col-6 col-xs-6 col-md-6 col-lg-2 bg-primary d-flex align-items-center justify-content-center p-3 border border-3 border-white">
+                    ARTÍCULO 9
+                </article>
+                <article
+                    class="col-6 col-xs-6 col-md-6 col-lg-2 bg-primary d-flex align-items-center justify-content-center p-3 border border-3 border-white">
+                    ARTÍCULO 10
+                </article>
+            </div>
+
+
+        </main>
+    </div>
+
+
+    <footer class="bg-success d-flex align-items-center justify-content-center p-3 border border-3 border-white">
+        FOOTER
+    </footer>
+
+    <!-- en este ejercicio no se ocupa javascript pero si se necesita se debe mandar llamar como cualquier archivo javascript, justo antes de terminar la etiqueta body -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
